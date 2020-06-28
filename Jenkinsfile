@@ -9,8 +9,13 @@ node{
        sh "${mvnHome}/bin/mvn package"
    }
    
-   stage('Email Notifications'){
-       mail bcc: '', body: '''haai prashe! welcome to email notifications of jenkins.
-       thanks, prashe.''', cc: '', from: '', replyTo: '', subject: 'jenkins job details  notifications', to: 'prashanth.bura6465@gmail.com'
+   stage('Slack Notifications'){
+      slackSend baseUrl: 'https://hooks.slack.com/services/', 
+      channel: 'jenkins-pipeline', 
+      color: 'good', 
+      message: 'hey, u got a message from jenkins!', 
+      teamDomain: 'cookies', 
+      tokenCredentialId: 'slack-demo', 
+      username: 'cookies'
    }
  }  
